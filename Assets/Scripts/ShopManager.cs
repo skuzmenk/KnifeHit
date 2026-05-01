@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro; // Додаємо підтримку TextMeshPro
+using TMPro; 
 
 public class ShopManager : MonoBehaviour
 {
-    public TMP_Text coinsText; // Змінюємо на TMP_Text (якщо у тебе TMP)
+    public TMP_Text coinsText; 
 
     [Header("Knife Prices")]
     public int[] knifePrices = { 0, 100, 250 };
@@ -31,8 +31,6 @@ public class ShopManager : MonoBehaviour
 
             string knifeKey = "KnifeBought_" + i;
             int isBought = PlayerPrefs.GetInt(knifeKey, (i == 0 ? 1 : 0));
-
-            // Шукаємо ТЕКСТ будь-якого типу всередині кнопки
             string buttonLabel = "";
             int selectedKnife = PlayerPrefs.GetInt("SelectedKnife", 0);
 
@@ -46,11 +44,8 @@ public class ShopManager : MonoBehaviour
                 buttonLabel = "Buy (" + knifePrices[i] + ")";
                 actionButtons[i].interactable = true;
             }
-
-            // Встановлюємо текст (працює і для Legacy, і для TMP)
             Text legacyText = actionButtons[i].GetComponentInChildren<Text>();
             if (legacyText != null) legacyText.text = buttonLabel;
-
             TMP_Text tmpText = actionButtons[i].GetComponentInChildren<TMP_Text>();
             if (tmpText != null) tmpText.text = buttonLabel;
         }
